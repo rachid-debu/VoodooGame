@@ -72,4 +72,33 @@ Both the current database schema and the files dropped in the S3 bucket are not 
 Can you find ways to improve them?
 
 
+# Theory Answers
+#### Question 1: 
+The project is missing tests on the backend. Didn't have time to implement tests.
+The populate functionnality should check for existing data in database, and update accordingly. 
+We should maybe update the current model to have unique key (for example the appID). I tried to do that with sequelize/sqlite combo, but the 
+updateOnDuplicate option together with setting up a unique key didn't seem to work. Not too familiar with sqlite/sequelize. But I think an improvement should be made there.
+Also the populate should maybe require an authentication.
 
+Another improvement would be also to tidy up the project. I started separating some backend files, but it can be improved by setting up folder/routes (e.g games folder routes).
+Frontend is even worse but is not our subject.
+
+The project is missing Typescript, which would help tremendously when coding and avoid mistakes.
+The project is not using ES6 :(.
+
+#### Question 2:
+One solution would be to implement a scheduler with node. In my previous job we used Agenda.
+We could schedule the populate script to be ran on a regular basis, say every night at 2am. 
+
+We could also have the data team to provide the new data on our webapp instead of pushing to S3. We could then be responsible to deliver that data to S3 (for saving purposes). 
+
+Finally, I never implemented that, but I'm pretty sure there could be a solution using AWS Lambda functions to automate this when a new file arrives into S3.
+
+#### Question 3:
+I started hinting on this in question 1, but we should have the appId be a unique key (or maybe the primary key, since it is actually unique). Therefore, if a record already exists in the database we could update it.
+
+Also, the position of the app in the top100 is not really saved, we could add a field in Game table.
+
+Also, the json file formatting is obnoxious (an array of size N of arrays of size M). Could be a regular array, easier to loop, or even better, a hashmap (with key being the appid).
+
+Finally, everything is public (of course it is a sample project) but i don't like using the S3 public url in our webapp. First, the url should be private. Second, it should be provided by the backend rather than the front (when possible).
