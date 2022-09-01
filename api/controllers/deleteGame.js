@@ -1,3 +1,5 @@
+const db = require('../../models');
+
 const deleteGame = async (req, res) => {
   try {
     const game = await db.Game.findByPk(parseInt(req.params.id))

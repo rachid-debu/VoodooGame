@@ -1,3 +1,5 @@
+const db = require('../../models');
+
 const updateGame = async (req, res) => {
     // eslint-disable-next-line radix
     const id = parseInt(req.params.id);
