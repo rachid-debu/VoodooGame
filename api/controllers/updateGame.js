@@ -1,4 +1,4 @@
-export const updateGame = async (req, res) => {
+const updateGame = async (req, res) => {
     // eslint-disable-next-line radix
     const id = parseInt(req.params.id);
     const { publisherId, name, platform, storeId, bundleId, appVersion, isPublished } = req.body;
@@ -11,3 +11,5 @@ export const updateGame = async (req, res) => {
       return res.status(400).send(err);
     }
   }
+
+  module.exports = { updateGame }

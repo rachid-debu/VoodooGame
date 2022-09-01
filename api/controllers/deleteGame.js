@@ -1,4 +1,4 @@
-export const deleteGame = async (req, res) => {
+const deleteGame = async (req, res) => {
   try {
     const game = await db.Game.findByPk(parseInt(req.params.id))
     await game.destroy({ force: true })
@@ -8,3 +8,6 @@ export const deleteGame = async (req, res) => {
     return res.status(400).send(err);
   }
 }
+
+
+module.exports = { deleteGame }
